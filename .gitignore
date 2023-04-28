@@ -1,0 +1,6 @@
+/dist
+/node_modules
+.env
+.vscode
+.prettierrc
+package-lock.json
