@@ -11,7 +11,7 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT;
 
-// middlewares
+// middlewares aux
 app.use(compression());
 app.use(cors());
 app.use(express.json());
