@@ -24,7 +24,7 @@ export const getRecipes = async (recipeQuery: string) =>{
         const cleanedJsonString = recipeResp.trim().replace(/\n/g, '');
         const recipe = JSON.parse(cleanedJsonString);
 
-        console.log(recipe);
+        console.log(recipeResp);
 
         return recipe;
         
