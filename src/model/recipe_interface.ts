@@ -4,4 +4,5 @@ export interface IRecipeByCategory {
     steps: string[];
     ingredients: string[];
     category: string;
+    image: string;
   }

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { getRecipes, getRecipeByCategory } from '../service/recipe.service';
+import { getRecipes, getRecipeByCategory, getRecipeById } from '../service/recipe.service';
 
 export const getAllRecipes = async (req: Request, res: Response) => {
     const { body } = req;
@@ -18,6 +18,17 @@ export const getRecipesByCategories = async(req: Request, res: Response) => {
     try {
         const responseRecipesByCategories = await getRecipeByCategory();
         res.json(responseRecipesByCategories);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+}
+
+export const getRecipesById = async(req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    try {
+        const responseGetRecipeById = await getRecipeById(id);
+        
+        res.json(responseGetRecipeById);
     } catch (error) {
         res.status(400).json(error);
     }

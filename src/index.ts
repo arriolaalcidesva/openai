@@ -1,17 +1,18 @@
 import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
+//import dotenv from 'dotenv';
 import compression from 'compression';
 import cors from 'cors';
 import openAiRoutesV1 from "./routes/openai.route";
 import recipeRoutesV1 from "./routes/recipe.route";
 import categoryRoutesV1 from "./routes/category.route";
+import { port } from './config/config';
 
-dotenv.config();
+//dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT;
-
-// middlewares aux
+//const port = process.env.PORT;
+console.log('PORT: ',port);
+// middlewares
 app.use(compression());
 app.use(cors());
 app.use(express.json());

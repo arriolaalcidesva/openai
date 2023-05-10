@@ -1,9 +1,10 @@
-import dotenv from 'dotenv';
+//import dotenv from 'dotenv';
+import { uri_openai } from '../config/config'
 import axios from 'axios';
 
-dotenv.config();
+//dotenv.config();
 
-const OPENAI_URI = `${process.env.URL_OPEN_IA}/`;
+const OPENAI_URI = `${uri_openai}/`;
 
 export const getRecipes = async (recipeQuery: string) =>{
     try {
@@ -24,7 +25,7 @@ export const getRecipes = async (recipeQuery: string) =>{
         const cleanedJsonString = recipeResp.trim().replace(/\n/g, '');
         const recipe = JSON.parse(cleanedJsonString);
 
-        console.log(recipeResp);
+        console.log(recipe);
 
         return recipe;
         

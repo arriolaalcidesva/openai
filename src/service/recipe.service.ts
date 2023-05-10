@@ -27,7 +27,8 @@ export const getRecipeByCategory = async () => {
                 name: rec.name.toString(),
                 steps: rec.steps.split('\n'),
                 ingredients: rec.ingredients.split('\n'),
-                category: rec.category.toString()
+                category: rec.category.toString(),
+                image: rec.image.toString()
             }
         });
         
@@ -35,5 +36,27 @@ export const getRecipeByCategory = async () => {
     } catch (e) {
         console.log(e);
         throw error('Internal Server error');
+    }
+};
+
+export const getRecipeById = async (id: number) => {
+    try{
+    	
+	    const response: QueryResult = await dbConnection.query('SELECT r.*, c.name AS category FROM recipe r INNER JOIN categories c ON r.category_id = c.id WHERE r.id = $1', [id]);
+	    const rowQry = response.rows[0];
+	   
+	    if(!rowQry) return {"status": false,"message":"Receta no encontrada."};
+	    
+	    return {
+                id: Number(rowQry.id),
+                name: rowQry.name.toString(),
+                steps: rowQry.steps.split('\n'),
+                ingredients: rowQry.ingredients.split('\n'),
+                category: rowQry.category.toString(),
+                image: rowQry.image.toString()
+            }
+    }catch(e: any){
+    	//console.log(e);
+    	throw error(e.message)
     }
 };
